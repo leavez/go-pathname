@@ -164,7 +164,7 @@ func (o Pathname) IsRegularFile() bool {
 }
 
 func (o Pathname) IsSymlink() bool {
-	fileInfo, err := os.Stat(o.filePath)
+	fileInfo, err := os.Lstat(o.filePath)
 	if err != nil {
 		return false
 	}
