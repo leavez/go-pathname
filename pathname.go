@@ -156,7 +156,7 @@ func (o Pathname) IsFile() bool {
 }
 
 func (o Pathname) IsRegularFile() bool {
-	fileInfo, err := os.Stat(o.filePath)
+	fileInfo, err := os.Lstat(o.filePath)
 	if err != nil {
 		return false
 	}
