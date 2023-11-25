@@ -32,6 +32,10 @@ func (o Pathname) String() string {
 	return o.filePath
 }
 
+func (o Pathname) Cleaned() Pathname {
+	return Raw(filepath.Clean(o.filePath))
+}
+
 func (o Pathname) Append(path string) Pathname {
 	return Raw(filepath.Join(o.filePath, path))
 }
@@ -230,7 +234,7 @@ func (o Pathname) CopyFileTo(toPath Pathname) error {
 }
 
 func (o Pathname) SymlinkTo(toPath Pathname) error {
-	return os.Symlink(o.filePath, toPath.filePath)
+	return os.Symlink(toPath.filePath, o.filePath)
 }
 
 func (o Pathname) Perm() uint32 {
